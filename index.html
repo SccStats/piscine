@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stats Organisation</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="./swag.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="icon" type="image/png" href="logoicon.png" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./css/custom.css">
+</head>
+
+<body class="page">
+	<header>
+		<nav id="menu"></nav>
+	</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10">
+				<section class="col-lg-4 col-lg-offset-0">
+					<div id="ptdr" style="opacity:0.9; width: 300px; height: 200px;">
+					</div>
+				</section>
+				<section class="col-lg-3 col-lg-offset-1">
+					<div id="ptdr2" style="opacity:0.9; width: 300px; height: 200px;">
+
+					</div>
+				</section>
+				<section class="col-lg-3 col-lg-offset-1">
+					<div id="ptdr3" style="opacity:0.9; width: 300px; height: 200px;">
+					</div>	
+				</section>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+	<script type="text/javascript">
+	google.load("visualization", "1", {packages:["corechart"]});
+
+	function search()
+	{	//  GET /repos/AntoineMahieu/piscine/stats/contributors
+		
+	//$('#lol').load('GET /repos/AntoineMahieu/piscine/stats/contributors');
+
+	var mdr = document.getElementById('input').value;
+	if(mdr)
+		$("#lol").loadRepositories(mdr);
+
+			//$("#input").value
+		}
+	 // $(function() {
+	//    $("#lol").loadRepositories("AntoineMahieu");
+	//  });
+
+function googleGr(dataReceived)
+{
+		/*
+		var options = {
+	          title: 'Nombre de commits',
+	          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+	          vAxis: {minValue: 0}
+	        };
+	        */
+	        var options = {
+	        	title: 'Les Commits',
+	        	pieHole: 0.3,
+	        };
+	        var data = google.visualization.arrayToDataTable(dataReceived);
+	        var chart = new google.visualization.PieChart(document.getElementById('ptdr'));
+		//data.removeColumns(0);
+
+		for (var i = 0; i < data.length; i++)
+		{
+			for (var j = 0; j < data[i].length; j++)
+			{
+				console.log(data[i][j]);
+
+			}
+		}
+
+		console.log("avant draw");
+		chart.draw(data, options);
+
+		var chart = new google.visualization.PieChart(document.getElementById('ptdr2'));
+		chart.draw(data, options);
+
+		var chart = new google.visualization.PieChart(document.getElementById('ptdr3'));
+		chart.draw(data, options);
+	}
+	</script>
+	
+	<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="./js/git.js" type="text/javascript"></script>
+	<script src="./js/google.js" type="text/javascript"></script>
+	<footer>
+		<script src="./js/jQuery.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+		$( "#menu" ).load( "./menu.html" )
+		</script>
+	</footer>
+</body>
+</html>
